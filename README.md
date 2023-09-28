@@ -1,6 +1,8 @@
 # Data Insights without Data Processing Headaches
 
-There is a lot of talk in my industry right now about using AI to "Analyze a customers data, and find issues without human intervention".  I was curious if I could get similar results without AI, using an approach based more on information theory.  The biggest problems businesses encounter when trying to deliver on the promise of an algorithm to find arbitrary issues is that AI requires very well formatted data.  I wanted to see if I could come up with an approach that doesn't care about data formatting in any way.
+There is a lot of talk in my industry right now about using AI to "Analyze a customers data, and find issues without human intervention".  This can be challenging to implement.  AI centered solutions typically require very well formatted training data, and a lot of it.  They also typically rely on metadata about each individual time-series or dataset in order to work;  a model trained on rainfal data is not applicable to snowfall data, despite their real world similarity.
+
+I was curious if I could deliver a similar product without AI.  This project uses information theory and some clever re-use of gZip (which is asicized on most modern CPUS) to analyze data for "points of interest" without the need for training or context.
 
 # The Algorithm:
 
@@ -28,7 +30,7 @@ Running main.py generates the following graph, with data in blue and entropy in 
 ![the full graph generated](readme_assets/full_graph.png)
 
 
-Zooming in on some "rolling" data, we can see that the entropy series peaks in the middle of "events of interest" in the original data.  In this case The peaks correspond to a dip, a rise, and then a more substantial dip in river flow.
+Zooming in on some "rolling" data, we can see that the entropy series peaks in the middle of "events of interest" in the original data.  In this case The peaks correspond to a dip, a rise, and then a more substantial dip in river flow.  The magnitude of spikes in the "entropy" graph are roughly proportional to the magnitude of interested data in the original.  Longer/Larger events of interest result in larger spikes in entropy.
 ![some 'Rolling' data in the graph](readme_assets/several_points_of_interest.png)
 
 
