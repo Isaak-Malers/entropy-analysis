@@ -18,7 +18,12 @@ class Analyzer:
         :return: yields each entropy value consecutively.  This is probably not all that useful.
         """
 
-        padded_for_convolution_data = [data[0]] * data_smoothing + data + [data[-1]] * data_smoothing
+        def get_index(index: int):
+            if index<0:
+                return data[0]
+            if index >= len(data):
+                return data[-1]
+            return data[index]
 
         def get_data(data_object):
             if data_func is None:
@@ -35,10 +40,10 @@ class Analyzer:
             except AttributeError:
                 raise ValueError(f"{entropy_out} not foun don object type: {type(data_object)}")
 
-        for i in range(data_smoothing, len(data) - data_smoothing):
+        for i in range(0, len(data)):
             convolution_range = []
-            for i in range(i - data_smoothing, i + data_smoothing + 1):
-                convolution_range.append(get_data(padded_for_convolution_data[i]))
+            for ci in range(i - data_smoothing, i + data_smoothing + 1):
+                convolution_range.append(get_data(get_index(ci)))
 
             to_compress = self.ingest.ingest_list_with_pickle(convolution_range)
             entropy = self.entropy.compress_and_calculate_ratio(to_compress)
