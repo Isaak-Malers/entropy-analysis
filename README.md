@@ -33,8 +33,7 @@ Running main.py generates the following graph, with data in blue and entropy in 
 Zooming in on some "rolling" data, we can see that the entropy series peaks in the middle of "events of interest" in the original data.  In this case The peaks correspond to a dip, a rise, and then a more substantial dip in river flow.  The magnitude of spikes in the "entropy" graph are roughly proportional to the magnitude of interested data in the original.  Longer/Larger events of interest result in larger spikes in entropy.
 ![some 'Rolling' data in the graph](readme_assets/several_points_of_interest.png)
 
-
-In another area, I found a fairly steep "step" in the data.  The entropy series peaks on the step as well.
+The algorithm does a reasonable job of amplifying small changes that might be more "interesting" because of how quickly they occur.  In this area of the data there is a quite steep step in the graph.  The spike in entropy is correspondingly large. 
 ![a 'Step' in the graph](readme_assets/step_decay.png)
 
 These examples don't seem impressive compared to bespoke or manual algorithms, specifically tuned to find discontinuities in river water data.  But keep in mind, the algorithm here doesn't know anything about water or sensors.  It doesn't even know that the data it is analyzing is a time series.  The only requirement is that the data is an iterable format.
