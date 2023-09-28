@@ -55,4 +55,4 @@ With a larger sliding window, the algorithm immediately finds the 2008 housing c
 There is something else interesting around 2012.  As the housing market picked back up, we see two distinct "groups" form in the entropy.  I suspect the algorithm has identified how some markets recovered differently than others here, and it has left an artifact in the entropy plot there.
 ![What happened in 2012?  Different markets recovered differently?](readme_assets/housing-split-recovery.png)
 
-These examples show how gzip entropy analysis can take arbitrary data across more than 2 dimensions, and reduce it to a single dimension (how interesting is the data).  Areas of the entropy chart that look interesting in 2 dimensions cna represent areas in a complex dataset that are interesting across arbitrary numbers of dimensions.
+These examples show how gzip entropy analysis can take arbitrary data across more than 2 dimensions, and reduce it to a single dimension (how interesting is the data).  Areas of the entropy chart that look interesting in 2 dimensions can represent areas in a complex dataset that are interesting across arbitrary numbers of dimensions.
