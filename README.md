@@ -37,3 +37,22 @@ The algorithm does a reasonable job of amplifying small changes that might be mo
 ![a 'Step' in the graph](readme_assets/step_decay.png)
 
 These examples don't seem impressive compared to bespoke or manual algorithms, specifically tuned to find discontinuities in river water data.  But keep in mind, the algorithm here doesn't know anything about water or sensors.  It doesn't even know that the data it is analyzing is a time series.  The only requirement is that the data is an iterable format.
+
+# But what about more complex data?
+
+I've downloaded a dataset with data for housing sales in america.  It contains sale price, bedrooms, and sale date.  Here is what a scatter plot of that dataset looks like, along with the entropy plot in red again:
+
+The entropy graph here is a little less useful, it does show seasonal variation patterns, and a few interesting patterns pop out, like the big reduction in entropy in the data in late 2013 (which corresponds to the "end" of the 2008 housing bubble.)
+
+![Housing data graph](readme_assets/housing-full.png)
+
+Let's try this again, with a much larger sliding window size.  The new dataset is more complicated, it makes sense that we would want to be able to correlate more data together for each datapoint:
+
+With a larger sliding window, the algorithm immediately finds the 2008 housing crash.  Interestingly it manifests as LESS entropy in the dataset, and so the entropy graph has a minimum over that time.
+
+![Gzip found 2008](readme_assets/housing-more-window.png)
+
+There is something else interesting around 2012.  As the housing market picked back up, we see two distinct "groups" form in the entropy.  I suspect the algorithm has identified how some markets recovered differently than others here, and it has left an artifact in the entropy plot there.
+![What happened in 2012?  Different markets recovered differently?](readme_assets/housing-split-recovery.png)
+
+These examples show how gzip entropy analysis can take arbitrary data across more than 2 dimensions, and reduce it to a single dimension (how interesting is the data).  Areas of the entropy chart that look interesting in 2 dimensions cna represent areas in a complex dataset that are interesting across arbitrary numbers of dimensions.
